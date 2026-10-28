@@ -1,0 +1,24 @@
+{
+  "aal90": {
+    "n_subjects": 939,
+    "n_patients": 357,
+    "n_controls": 582,
+    "n_rois": 90,
+    "n_edges": 4005,
+    "subjects_with_flat_rois": 0,
+    "fraction_zeroed_edges": 0.0,
+    "z_mean": 0.0276,
+    "z_sd": 0.3445
+  },
+  "aal116": {
+    "n_subjects": 939,
+    "n_patients": 357,
+    "n_controls": 582,
+    "n_rois": 116,
+    "n_edges": 6670,
+    "subjects_with_flat_rois": 0,
+    "fraction_zeroed_edges": 0.0,
+    "z_mean": 0.017,
+    "z_sd": 0.3261
+  }
+}

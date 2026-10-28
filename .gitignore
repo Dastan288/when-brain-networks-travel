@@ -1,0 +1,26 @@
+# Raw/derived data are never committed (dataset terms; size). Re-download with data/download_*.py
+data/raw/
+data/cache/
+results/features/*.npz
+
+# Per-participant tables are regenerated locally and not redistributed
+results/qc/*_subjects_qc.csv
+results/qc/ucla_extraction_qc.csv
+results/qc/preview_pheno_only_*/
+results/e5/oof_*.csv
+
+# Elsevier template and built manuscript files
+paper/template.docx
+paper/_build/
+paper/*.docx
+paper/*.pdf
+
+# Python / OS / editor
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store
+.vscode/
+.idea/

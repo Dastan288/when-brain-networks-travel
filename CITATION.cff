@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the paper below."
+title: "When Brain Networks Travel: code and results"
+type: software
+version: "1.0.0"
+date-released: "2026-10-28"
+license: MIT
+repository-code: "https://github.com/Dastan288/when-brain-networks-travel"
+authors:
+  - family-names: Kapizov
+    given-names: Dastan
+    affiliation: "School of Software Engineering, Astana IT University"
+    orcid: "https://orcid.org/0009-0005-3817-3614"
+  - family-names: Kumar
+    given-names: Praveen
+    affiliation: "School of Software Engineering, Astana IT University"
+    orcid: "https://orcid.org/0000-0002-9606-8960"
+  - family-names: Mukhtarov
+    given-names: Abilkhas
+    affiliation: "L.N. Gumilyov Eurasian National University"
+    orcid: "https://orcid.org/0000-0001-9020-2551"
+preferred-citation:
+  type: conference-paper
+  title: "When Brain Networks Travel: Cross-Dataset Generalization of Connectome-Based Classifiers across ABIDE, ADHD-200 and UCLA-CNP"
+  authors:
+    - family-names: Kapizov
+      given-names: Dastan
+    - family-names: Kumar
+      given-names: Praveen
+    - family-names: Mukhtarov
+      given-names: Abilkhas
+  collection-title: "AIDA 2026 – International Conference on AI and Data Analytics for Digital Transformation"
+  journal: "Procedia Computer Science"
+  publisher:
+    name: "Elsevier"
+  year: 2026

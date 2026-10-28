@@ -1,0 +1,92 @@
+# Single source of truth for paths, seeds and dataset choices.
+# Every script reads this file; every results table can be regenerated from it.
+
+seed: 42
+
+paths:
+  raw: data/raw            # downloaded derivatives (never committed)
+  results: results
+  qc: results/qc
+
+abide:
+  # ABIDE I Preprocessed (Preprocessed Connectomes Project; Craddock et al., 2013)
+  pipeline: cpac
+  # Primary strategy = band-pass, NO global signal regression (decided 2026-09-08):
+  # the documented ADHD-200 Athena pipeline has no GSR (WM/CSF/motion/polynomial only;
+  # Bellec et al. 2017) and the UCLA-CNP series are extracted without GSR.
+  # NOTE (2026-09-09, after loading the data): the Athena AAL time courses nevertheless
+  # behave like GSR data (mean edge z 0.03, 56 % of edges negative on average — same
+  # fingerprint as ABIDE filt_global: 0.02 / 58 %; ABIDE filt_noglobal: 0.37 / 0 %),
+  # presumably because the 4 mm WM/CSF regressors capture the global signal.
+  # Decision kept as pre-specified; filt_global (with GSR) is the ABIDE-internal
+  # robustness check AND the GSR-matched partner for ADHD-200 (results/e2_gsr).
+  strategy: filt_noglobal
+  robustness_strategy: filt_global
+  derivatives: [rois_aal, rois_cc200]
+  # Download every subject that has preprocessed outputs (FILE_ID != no_filename).
+  # Rater-based QC flags are kept in the QC table and applied later as a
+  # sensitivity analysis, not silently at download time.
+  quality_checked_at_download: false
+  phenotypic_csv: Phenotypic_V1_0b_preprocessed1.csv
+  # DX_GROUP coding in the phenotypic file: 1 = ASD, 2 = typical control
+  label_map: {1: 1, 2: 0}        # -> 1 = patient, 0 = control (project-wide convention)
+  sex_map: {1: "M", 2: "F"}
+  # Leave-one-site-out unit = institution (scanner/site), decided 2026-09-01:
+  # PCP splits three institutions into two SITE_IDs each (different protocols /
+  # samples on the same site). 20 SITE_ID -> 17 sites, matching the data descriptor.
+  site_merge:
+    UM_1: UM
+    UM_2: UM
+    UCLA_1: UCLA
+    UCLA_2: UCLA
+    LEUVEN_1: LEUVEN
+    LEUVEN_2: LEUVEN
+  # Primary sample = every subject with ROI series (n≈1035); the rater-QC-passed
+  # subset (n≈871, nilearn quality_checked criterion) is a sensitivity analysis.
+  primary_sample: all_with_derivatives
+  sensitivity_sample: rater_qc_pass
+
+adhd200:
+  # ADHD-200 Preprocessed, Athena pipeline (Bellec et al. 2017): WM/CSF/6 motion/poly3 regression,
+  # band-pass 0.009-0.08 Hz, no GSR, AAL time courses. First resting run per subject.
+  phenotypic_glob: "adhd200_preprocessed_phenotypics.tsv"
+  dx_col: DX            # 0 = TDC, 1 = ADHD-Combined, 2 = ADHD-Hyperactive/Impulsive, 3 = ADHD-Inattentive
+  site_col: Site
+  age_col: Age
+  sex_col: Gender       # 1 = male, 0 = female
+  site_map: {"1": Peking, "2": Brown, "3": KKI, "4": NeuroIMAGE, "5": NYU, "6": OHSU, "7": Pittsburgh, "8": WashU}
+
+ucla:
+  # UCLA-CNP ds000030 R1.0.5 fMRIPrep derivatives; AAL series extracted by data/download_ucla.py
+  # (WM/CSF/6 motion, detrend, band-pass 0.009-0.08 Hz, no GSR). Single site.
+  groups: [CONTROL, SCHZ, BIPOLAR, ADHD]
+  # participants.tsv lists two scanner serial numbers; they are the within-UCLA "sites"
+  # (leave-one-scanner-out diagonal, ComBat batch). Decided 2026-09-09.
+  scanner_map: {"35343": UCLA-S1, "35426": UCLA-S2}
+
+atlas:
+  # Feature variants built by src/features.py. Decided 2026-09-08 after QC:
+  # cerebellum/vermis (AAL labels >= 9000, 26 regions) are outside the field of
+  # view for many subjects/sites (295 of 430 flat-ROI events in ABIDE) and their
+  # coverage differs across scanners/datasets -> a site confound. The 90 cerebral
+  # AAL regions are the primary representation; AAL-116 and CC200 are
+  # robustness checks (ABIDE only for CC200).
+  primary: aal90
+  variants: [aal90, aal116, cc200]
+  aal_cerebral_max_label: 8999   # keep AAL labels < 9000 for aal90
+
+features:
+  kind: correlation            # Pearson r -> Fisher z -> upper triangle (k=1)
+  flat_roi_policy: zero        # edges touching a flat (zero-variance) ROI -> z = 0
+  r_clip: 0.999999             # before arctanh
+
+qc:
+  # A subject is flagged (not yet excluded) if any of these holds.
+  min_timepoints: 100
+  max_zero_variance_rois: 5
+  max_mean_fd_mm: 0.5
+  # Exclusion rule actually applied by src/features.py (decided 2026-09-08):
+  # a subject is dropped only if > 20 % of regions are flat in ANY atlas
+  # (catastrophic coverage / registration failure). Everything else stays in
+  # the primary sample; rater-QC-pass is the sensitivity sample.
+  exclude_flat_fraction_gt: 0.20

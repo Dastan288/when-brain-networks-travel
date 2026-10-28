@@ -1,0 +1,3 @@
+subject_id,file_id,site,reason
+51469,Caltech_0051469,CALTECH,flat ROI fraction > 0.2 in at least one atlas
+51478,Caltech_0051478,CALTECH,flat ROI fraction > 0.2 in at least one atlas

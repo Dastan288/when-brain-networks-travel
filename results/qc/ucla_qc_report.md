@@ -1,0 +1,12 @@
+# ucla — QC table
+
+- Subjects with ROI series and a usable diagnosis: **261** (139 patients / 122 controls) across **2** site(s); ROIs: 116.
+- Time points: min 128, median 152, max 152; NaN values: 0.
+- Age 33.3 (9.3) (range 21.0–50.0); male 58.2 %.
+- Flags: flat-ROI exclusion (> 20 %): 0; short (< 100 TP): 0; mean FD > 0.5 mm: 11.
+
+| site    |   n |   patients |   controls |   patient_% | dx_groups                                 | age_mean_sd   |   age_min |   age_max |   male_% | n_timepoints         |   meanFD_median_mm |   flat_rois_median |   excluded_flat |   flag_short |   flag_motion |
+|:--------|----:|-----------:|-----------:|------------:|:------------------------------------------|:--------------|----------:|----------:|---------:|:---------------------|-------------------:|-------------------:|----------------:|-------------:|--------------:|
+| UCLA-S1 | 171 |         71 |        100 |        41.5 | CONTROL:100, BIPOLAR:26, SCHZ:25, ADHD:20 | 33.0 (9.3)    |        21 |        50 |     53.2 | 128–152 (median 152) |              0.133 |                  0 |               0 |            0 |            11 |
+| UCLA-S2 |  90 |         68 |         22 |        75.6 | SCHZ:25, BIPOLAR:23, CONTROL:22, ADHD:20  | 33.8 (9.3)    |        21 |        50 |     67.8 | 152                  |              0.15  |                  0 |               0 |            0 |             0 |
+| TOTAL   | 261 |        139 |        122 |        53.3 | CONTROL:122, SCHZ:50, BIPOLAR:49, ADHD:40 | 33.3 (9.3)    |        21 |        50 |     58.2 | 128–152 (median 152) |              0.143 |                  0 |               0 |            0 |            11 |

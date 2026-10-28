@@ -1,0 +1,13 @@
+# Pinned to the versions used for the paper's experiments. Requires Python >= 3.11
+# (run_all.sh creates a virtual environment with a suitable interpreter automatically).
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.2
+scikit-learn==1.8.0
+nilearn==0.14.0
+matplotlib==3.10.9
+pyyaml>=6.0
+tabulate>=0.9          # DataFrame.to_markdown in QC reports
+# Harmonization (E3): neuroHarmonize wraps neuroCombat and supports apply-to-new-data.
+# Added once E3 starts; pinned then.
+# neuroHarmonize==2.4.5

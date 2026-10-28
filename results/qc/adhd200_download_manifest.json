@@ -1,0 +1,36 @@
+{
+  "dataset": "ADHD-200 Preprocessed (Athena)",
+  "source": "https://www.nitrc.org/frs/?group_id=383",
+  "descriptor_doi": "10.1016/j.neuroimage.2016.06.034",
+  "files": {
+    "extract_tcs.sh": {
+      "bytes": 939,
+      "md5": "3bf20805097c4d29a272145a4f0147b9"
+    },
+    "ADHD200_AAL_TCs_filtfix.tar.gz": {
+      "bytes": 176634170,
+      "md5": "ca6a30abfbe7e04503d38374505077f7"
+    },
+    "ADHD200_testing_pheno.tar": {
+      "bytes": 40960,
+      "md5": "91e2c6272ebd12233656fa89ff5729b0"
+    },
+    "ADHD200_AAL_TCs_TestRelease.tar": {
+      "bytes": 85278720,
+      "md5": "799f75ea1dfeb3951a1af2aacb4b256a"
+    },
+    "adhd200_preprocessed_phenotypics.tsv": {
+      "bytes": 59935,
+      "md5": "a49684a52168b58d802b7fda8d8c9de6"
+    },
+    "ADHD200_training_pheno.tar": {
+      "bytes": 81920,
+      "md5": "71dc13df2cf3b47920451ce344ffe7ff"
+    }
+  },
+  "n_timeseries_files": 1395,
+  "n_rois": 116,
+  "packed": "./data/cache/adhd200_athena_rois_aal.npz",
+  "downloaded_at_utc": "2026-09-09T12:13:27+00:00",
+  "elapsed_seconds": 14.8
+}

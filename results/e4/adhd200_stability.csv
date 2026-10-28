@@ -1,0 +1,2 @@
+dataset,n_folds,spearman_abs_w_mean,spearman_abs_w_min,jaccard_top100_mean,jaccard_top100_min
+adhd200,7,0.48628203474448367,0.140488359006649,0.2571058777230804,0.0582010582010582
